@@ -7,6 +7,13 @@
   <packaging>jar</packaging>
   <version>1.0-SNAPSHOT</version>
   <name>diversity</name>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <gmavenVersion>1.4</gmavenVersion>
+    <gmavenProviderSelection>2.0</gmavenProviderSelection>
+    <groovyVersion>2.1.2</groovyVersion>
+  </properties>
   <build>
     <plugins>
       <plugin>
@@ -18,6 +25,32 @@
           <downloadJavadocs>false</downloadJavadocs>
         </configuration>
       </plugin>
+    <plugin>
+      <groupId>org.codehaus.gmaven</groupId>
+        <artifactId>gmaven-plugin</artifactId>
+        <version>${gmavenVersion}</version>
+        <configuration>
+          <providerSelection>${gmavenProviderSelection}</providerSelection>
+          <sourceEncoding>UTF-8</sourceEncoding>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>generateStubs</goal>
+              <goal>compile</goal>
+              <goal>generateTestStubs</goal>
+              <goal>testCompile</goal>
+            </goals>
+          </execution>
+        </executions>
+        <dependencies>
+         <dependency>
+           <groupId>org.codehaus.groovy</groupId>
+           <artifactId>groovy-all</artifactId>
+           <version>${groovyVersion}</version>
+         </dependency>
+       </dependencies>
+    </plugin>
     </plugins>
   </build>
   <modules>
