@@ -94,4 +94,12 @@ class BuildSettings {
 			this.config = this.config.merge(localConfig);
 		}
 	}
+	
+	protected def loadAndMergeFromResource(String path){
+		ClassLoader lc = Thread.currentThread().getContextClassLoader()
+		URL url = lc.getResource(path.trim());
+	    def localConfig = new ConfigSlurper().parse(url);
+        this.config = this.config.merge(localConfig);
+	}
+
 }
